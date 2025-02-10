@@ -55,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v6.13.0
         with:
           context: .
-          file: "{context}/Containerfile"
+          file: "Containerfile"
           push: true
           tags: ps-pat/julia-remoterepl:${{ github.ref_name }}
           labels: ${{ steps.meta.outputs.labels }}
