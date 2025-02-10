@@ -57,8 +57,12 @@ jobs:
           context: .
           file: "Containerfile"
           push: true
-          tags: ps-pat/julia-remoterepl:${{ github.ref_name }}
           labels: ${{ steps.meta.outputs.labels }}
+          tags: |
+            ghcr.io/ps-pat/julia-remoterepl:latest
+            ghcr.io/ps-pat/julia-remoterepl:${{ github.ref_name }}
+            docker.io/patfou/julia-remoterepl:latest
+            docker.io/patfou/julia-remoterepl:${{ github.ref_name }}
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v2
