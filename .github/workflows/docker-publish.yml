@@ -56,7 +56,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags:1 }}
+          tags: ps-pat/julia-remoterepl:${{ github.ref_name }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Generate artifact attestation
