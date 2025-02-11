@@ -6,6 +6,8 @@ on:
 
 env:
   IMAGE_NAME: ${{ github.repository }}
+  GITHUB_TAG: ghcr.io/ps-pat/${{ env.IMAGE_NAME }}
+  DOCKERHUB_TAG: docker.io/patfou/${{ env.IMAGE_NAME }}
 
 jobs:
   build:
@@ -64,10 +66,17 @@ jobs:
             docker.io/patfou/julia-remoterepl:latest
             docker.io/patfou/julia-remoterepl:${{ github.ref_name }}
 
-      - name: Generate artifact attestation
+      - name: Generate artifact attestation (Github)
         uses: actions/attest-build-provenance@v2
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+          subject-name: ${{ env.GITHUB_TAG }}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
+
+      - name: Generate artifact attestation (Dockerhub)
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-name: index.${{ env.DOCKERHUB_TAG }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
 
