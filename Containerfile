@@ -10,9 +10,8 @@ COPY entrypoint.sh /
 
 ## Julia setup
 COPY julia /julia/
-RUN mkdir -p /julia/depot
-RUN chown 1000:1000 -R /julia
+RUN chown -R 1000:1000 /julia
 
 USER julian
 RUN julia -e "using Pkg; Pkg.add(\"RemoteREPL\")"
-ENV JULIA_DEPOT_PATH="/julia/depot:$JULIA_DEPOT_PATH"
+ENV JULIA_DEPOT_PATH="/julia/depot:/home/julian/.julia:"
