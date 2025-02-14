@@ -13,5 +13,5 @@ COPY julia /julia/
 RUN chown -R 1000:1000 /julia
 
 USER julian
-RUN julia -e "using Pkg; Pkg.add(\"RemoteREPL\")"
+RUN julia -e "using Pkg; Pkg.add(\"Revise\"); Pkg.add(url = \"https://codeberg.org/ptrk/RemoteREPL.jl.git\")"
 ENV JULIA_DEPOT_PATH="/julia/depot:/home/julian/.julia:"
