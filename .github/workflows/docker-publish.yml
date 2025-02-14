@@ -6,8 +6,8 @@ on:
 
 env:
   IMAGE_NAME: ${{ github.repository }}
-  GITHUB_TAG: ghcr.io/ps-pat/${{ env.IMAGE_NAME }}
-  DOCKERHUB_TAG: docker.io/patfou/${{ env.IMAGE_NAME }}
+  GITHUB_TAG: ghcr.io/ps-pat/${{ github.repository }}
+  DOCKERHUB_TAG: docker.io/patfou/${{ github.repository }}
 
 jobs:
   build:
